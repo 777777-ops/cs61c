@@ -1,9 +1,25 @@
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
+1.The answer:
+	Command:" r arg0 arg1 arg2 arg3 ..."
+	也可以使用 set arg0 arg1 arg2，预先设置好参数，然后再"r".
+2.The answer:
+	Command:" Break main"  			//在主函数断点
+	Command:" Break hello.c:行号"  		//在某个行号断点
+	Command:" b 0x30021b   *                //在某个内存空间断点
+3.The answer:
+	Command: "Next" //不进入函数
+	Command: "Step" //进入函数
+	Command: "Continue"   //继续运行
+6.The answer:
+	Command: "print (p)"
+		假如是for(int i = 0;i <= 10 ;i++)
+		使用 p i;  可以获取每次循环中的i
+7.The answer:
+	Command:"display"        //跟踪某个变量的值  
+		display *pointer //也可以跟踪某个指针映射变量的
+	         上面例子中的跟踪  i  就是个很好的例子
+8.The answer:
+	Command:"info locals"    //获取当前栈中函数的所有参数
+
+
+9.The answer:
+	Command: "quit (q)"
