@@ -37,29 +37,32 @@ main:
     sw s3, 12(sp)
     sw ra, 16(sp)
     # END PROLOGUE
-    addi t0, x0, 0
-    addi s0, x0, 0
-    la s1, source
-    la s2, dest
+    addi t0, x0, 0       #k
+    addi s0, x0, 0       #sum
+    la s1, source        #source
+    la s2, dest          #dest
 loop:
-    slli s3, t0, 2
-    add t1, s1, s3
-    lw t2, 0(t1)
-    beq t2, x0, exit
-    add a0, x0, t2
-    addi sp, sp, -8
-    sw t0, 0(sp)
-    sw t2, 4(sp)
-    jal fun
+    #字节寻址，每个存储单元4字节，t0作为偏移量要×4
+    
+    slli s3, t0, 2           #左移×4
+    add t1, s1, s3           #t1目标地址
+    lw t2, 0(t1)             #t2---source[k]
+    beq t2, x0, exit         #equal to break
+    add a0, x0, t2           #source[k]作为函数参数传参
+    addi sp, sp, -8          #调用fun
+    sw t0, 0(sp)             #k  保存
+    sw t2, 4(sp)	     #source[k]  保存
+    jal fun		
+		  #ra寄存器更新至下一条指令的pc		
     lw t0, 0(sp)
     lw t2, 4(sp)
-    addi sp, sp, 8
-    add t2, x0, a0
-    add t3, s2, s3
-    sw t2, 0(t3)
-    add s0, s0, t2
-    addi t0, t0, 1
-    jal x0, loop
+    addi sp, sp,8            #取出k 和 source[k]
+    add t2, x0, a0	     #函数结果转移至t2
+    add t3, s2, s3	     #结果的内存地址
+    sw t2, 0(t3)             #写入内存
+    add s0, s0, t2           #sum求和
+    addi t0, t0, 1           #k++
+    jal x0, loop	     #重新新欢
 exit:
     add a0, x0, s0
     # BEGIN EPILOGUE
