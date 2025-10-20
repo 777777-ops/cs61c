@@ -13,6 +13,12 @@
    unfairly bias results (lower cases in switches must run through more
    case statements on each iteration).
 */
+
+//j：行
+//i：列
+//
+
+//4
 void multMat1( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is ijk loop order. */
@@ -22,6 +28,7 @@ void multMat1( int n, float *A, float *B, float *C ) {
                 C[i+j*n] += A[i+k*n]*B[k+j*n];
 }
 
+//6
 void multMat2( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is ikj loop order. */
@@ -31,6 +38,7 @@ void multMat2( int n, float *A, float *B, float *C ) {
                 C[i+j*n] += A[i+k*n]*B[k+j*n];
 }
 
+//3
 void multMat3( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is jik loop order. */
@@ -40,6 +48,7 @@ void multMat3( int n, float *A, float *B, float *C ) {
                 C[i+j*n] += A[i+k*n]*B[k+j*n];
 }
 
+//1
 void multMat4( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is jki loop order. */
@@ -49,6 +58,7 @@ void multMat4( int n, float *A, float *B, float *C ) {
                 C[i+j*n] += A[i+k*n]*B[k+j*n];
 }
 
+//5
 void multMat5( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is kij loop order. */
@@ -58,6 +68,7 @@ void multMat5( int n, float *A, float *B, float *C ) {
                 C[i+j*n] += A[i+k*n]*B[k+j*n];
 }
 
+//2
 void multMat6( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is kji loop order. */
